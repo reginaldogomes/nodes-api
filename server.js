@@ -1,12 +1,23 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express()
 
+const corsOptions = {
+    origin: 'http://localhost/8081'
+}
+
+app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({ extended: true}))
+
+// simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+    res.json({"message": "Welcome to Nodes API application."});
 })
 
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+const PORT = process.env.PORT || 8080
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
 })
